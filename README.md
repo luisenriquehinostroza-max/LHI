@@ -1,6 +1,6 @@
 # Vinya
 
-An AI-augmented efficiency platform built on Odoo ERP, helping small U.S. agricultural producers catch spoilage risk early, track harvest-to-bottle yield, align production with demand, and see real margins by product line.
+An AI-augmented efficiency platform helping small U.S. agricultural producers catch spoilage risk early, track harvest-to-bottle yield, align production with demand, and see real margins by product line.
 
 Built by Hinos Investments LLC — [hinosinvestments.com](https://hinosinvestments.com) — Orlando, FL.
 
@@ -10,4 +10,4 @@ This repository hosts the marketing site for Vinya via GitHub Pages.
 
 ## Contact
 
-luishinos@yahoo.com
+luis@hinosinvestments.com
