@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinya — Catch spoilage before it costs you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #EDE6D6;
+    --paper-light: #FAF7EF;
+    --ink: #1F2B22;
+    --amber: #C98A3E;
+    --vine: #4B6B4F;
+    --rule: #B8AD93;
+    --ink-soft: #4A5449;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #1A1F19;
+      --paper-light: #232920;
+      --ink: #EDE6D6;
+      --ink-soft: #C9C2AE;
+      --rule: #4A5040;
+      --amber: #E0A85C;
+      --vine: #8AAE8E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #1A1F19;
+    --paper-light: #232920;
+    --ink: #EDE6D6;
+    --ink-soft: #C9C2AE;
+    --rule: #4A5040;
+    --amber: #E0A85C;
+    --vine: #8AAE8E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; margin:0; color:var(--ink);}
+  p{margin:0 0 1em 0; color:var(--ink-soft); max-width:64ch;}
+  a{color:inherit;}
+  .rule{border:none; border-top:1px solid var(--rule); margin:64px 0;}
+
+  header.nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px 0 0 0;
+  }
+  .wordmark{font-family:'Fraunces', serif; font-weight:600; font-size:1.3rem; letter-spacing:0.01em;}
+  .wordmark span{color:var(--amber);}
+  .nav-links{display:flex; gap:28px; font-size:0.92rem;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent;}
+  .nav-links a:hover{border-bottom-color:var(--amber); color:var(--ink);}
+
+  .hero{padding:72px 0 40px 0;}
+  .hero h1{font-size:2.6rem; line-height:1.15; max-width:15ch; letter-spacing:-0.01em;}
+  .hero .lede{font-size:1.15rem; max-width:48ch; margin-top:22px;}
+  .hero-tag{
+    display:inline-block; font-size:0.85rem; color:var(--vine);
+    margin-bottom:18px; font-weight:500;
+  }
+
+  /* Batch timeline illustration */
+  .lot-diagram{
+    margin:48px 0 8px 0; padding:24px 26px; background:var(--paper-light);
+    border:1px solid var(--rule); border-radius:2px;
+  }
+  .lot-diagram-label{font-size:0.82rem; color:var(--ink-soft); margin-bottom:14px;}
+  .lot-track{position:relative; height:6px; background:var(--rule); border-radius:3px; margin:28px 0 10px 0;}
+  .lot-fill{position:absolute; left:0; top:0; height:100%; width:64%; background:var(--vine); border-radius:3px;}
+  .lot-flag{
+    position:absolute; left:64%; top:-34px; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .lot-flag .dot{width:14px; height:14px; border-radius:50%; background:var(--amber); border:3px solid var(--paper-light); box-shadow:0 0 0 1.5px var(--amber);}
+  .lot-flag .lbl{font-size:0.78rem; color:var(--amber); font-weight:600; white-space:nowrap;}
+  .lot-marks{display:flex; justify-content:space-between; font-size:0.78rem; color:var(--ink-soft); margin-top:6px;}
+
+  section{padding:8px 0;}
+  .kicker{font-size:0.85rem; color:var(--vine); font-weight:500; margin-bottom:10px;}
+  h2{font-size:1.7rem; max-width:22ch; margin-bottom:18px;}
+
+  .stat-row{display:flex; gap:36px; margin:32px 0 8px 0; flex-wrap:wrap;}
+  .stat{flex:1; min-width:180px;}
+  .stat .num{font-family:'Fraunces', serif; font-size:2.1rem; font-weight:600; color:var(--ink); display:block; line-height:1.1;}
+  .stat .cap{font-size:0.88rem; color:var(--ink-soft); margin-top:4px; max-width:26ch;}
+
+  .modules{margin-top:8px;}
+  .module{
+    padding:22px 0; border-top:1px solid var(--rule);
+    display:grid; grid-template-columns:180px 1fr; gap:24px; align-items:start;
+  }
+  .module:last-child{border-bottom:1px solid var(--rule);}
+  .module h3{font-size:1.08rem; font-weight:600; color:var(--ink);}
+  .module p{margin:8px 0 0 0; font-size:0.96rem;}
+
+  .practice-steps{margin-top:20px;}
+  .practice-step{display:flex; gap:18px; padding:16px 0;}
+  .practice-step .mark{
+    width:8px; height:8px; border-radius:50%; background:var(--amber);
+    margin-top:9px; flex-shrink:0;
+  }
+  .practice-step p{margin:0;}
+
+  .founder{
+    background:var(--paper-light); border:1px solid var(--rule); border-radius:2px;
+    padding:32px 30px; margin-top:24px;
+  }
+  .founder h3{font-size:1.15rem; margin-bottom:10px;}
+  .founder p{font-size:0.96rem;}
+  .credentials{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:16px; font-size:0.86rem; color:var(--ink-soft);}
+  .credentials span{white-space:nowrap;}
+
+  .cta-box{
+    text-align:left; padding:40px 0 8px 0;
+  }
+  .cta-box .lede{margin-bottom:24px;}
+  .btn{
+    display:inline-block; background:var(--ink); color:var(--paper);
+    padding:13px 26px; border-radius:3px; text-decoration:none;
+    font-size:0.95rem; font-weight:500; border:1px solid var(--ink);
+  }
+  .btn:hover{background:transparent; color:var(--ink);}
+
+  footer{padding:40px 0 60px 0; font-size:0.82rem; color:var(--ink-soft);}
+  footer .rule{margin:0 0 24px 0;}
+
+  @media (max-width:640px){
+    .hero h1{font-size:2rem;}
+    .module{grid-template-columns:1fr; gap:6px;}
+    .stat-row{gap:24px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="wordmark">vin<span>y</span>a</div>
+    <nav class="nav-links">
+      <a href="#problem">The problem</a>
+      <a href="#platform">The platform</a>
+      <a href="#founder">Founder</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="hero-tag">For small agricultural producers in the U.S.</span>
+    <h1>Know a batch is at risk before you lose it</h1>
+    <p class="lede">Vinya installs inside the Odoo you already run and turns the harvest, inventory, and sales data you already enter into early warnings — so spoilage gets caught before it happens, not after.</p>
+
+    <div class="lot-diagram">
+      <div class="lot-diagram-label">Lot 24-B · Fermentation · Varietal: Chambourcin</div>
+      <div class="lot-track">
+        <div class="lot-fill"></div>
+        <div class="lot-flag">
+          <span class="lbl">14 days past average</span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="lot-marks">
+        <span>Fermentation start</span>
+        <span>Time elapsed</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="problem">
+    <div class="kicker">The problem</div>
+    <h2>Spoilage happens before anyone notices</h2>
+    <p>Most small producers already run an ERP system, but it records what already happened — it doesn't flag what's about to. The result: a batch is lost, a harvest is overproduced, or a cost is discovered too late to act on it.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">8 weeks</span>
+        <span class="cap">earlier — how much sooner USDA sensor technology detected oxidative faults in white wine than a human tasting panel (USDA ARS, May 2025)</span>
+      </div>
+      <div class="stat">
+        <span class="num">10,761</span>
+        <span class="cap">wineries in the U.S., most of them small family-owned businesses (WineAmerica, 2025)</span>
+      </div>
+      <div class="stat">
+        <span class="num">30–40%</span>
+        <span class="cap">of the U.S. food supply is lost or wasted (USDA)</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="platform">
+    <div class="kicker">The platform</div>
+    <h2>Four ways to see the risk before the cost</h2>
+    <p>Each module works on the data your team already enters into Odoo — no new systems to learn, no extra process to follow.</p>
+
+    <div class="modules">
+      <div class="module">
+        <h3>Spoilage risk alerts</h3>
+        <p>Compares how long a batch has sat in a production stage against the expected historical range, and flags it before the risk turns into a loss.</p>
+      </div>
+      <div class="module">
+        <h3>Harvest-to-bottle yield tracking</h3>
+        <p>Links what was harvested by block or varietal to what was actually bottled, pointing out where more product than expected is being lost.</p>
+      </div>
+      <div class="module">
+        <h3>Demand-aligned production planning</h3>
+        <p>Compares planned production volume against actual sales demand, so producers don't make more than the market will absorb.</p>
+      </div>
+      <div class="module">
+        <h3>Margins by product line</h3>
+        <p>Calculates the real cost per bottle — raw material, labor, overhead — so producers know which line is actually turning a profit.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="how-it-works">
+    <div class="kicker">How it starts</div>
+    <h2>Built alongside the producer, not from a distance</h2>
+    <div class="practice-steps">
+      <div class="practice-step">
+        <span class="mark"></span>
+        <p>An on-site visit to document how the production cycle is managed today and how it's recorded in Odoo.</p>
+      </div>
+      <div class="practice-step">
+        <span class="mark"></span>
+        <p>Configuration of the first version on top of that real data, starting with the module that matters most immediately.</p>
+      </div>
+      <div class="practice-step">
+        <span class="mark"></span>
+        <p>The producer keeps using the Odoo they already know — Vinya sits on top, without replacing anything.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="founder">
+    <div class="kicker">Who's building it</div>
+    <h2>Twenty years configuring the systems that now power Vinya</h2>
+    <div class="founder">
+      <h3>Luis Hinostroza</h3>
+      <p>Odoo ERP consultant and Oracle Fusion Financials support specialist, with more than two decades leading technology infrastructure and projects for mission-critical operations — including a 200+ server data center and real-time billing systems serving over a million users. Founder of Hinos Investments LLC.</p>
+      <div class="credentials">
+        <span>Six Sigma Black Belt</span>
+        <span>ITIL</span>
+        <span>ISO/IEC 20000-1</span>
+        <span>OCI AI Foundations Associate</span>
+        <span>MBA</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-box" id="contact">
+    <div class="kicker">Pilot collaboration</div>
+    <h2>Looking for a first producer to build this with</h2>
+    <p class="lede">If your operation handles harvest, perishable inventory, or batch production, and you use or are considering Odoo, let's talk — no cost or commitment during the pilot phase.</p>
+    <a class="btn" href="mailto:luishinos@yahoo.com?subject=Interest%20in%20pilot%20collaboration%20-%20Vinya">Get in touch</a>
+  </section>
+
+  <hr class="rule">
+
+  <footer>
+    <p>Vinya is a project in development by Hinos Investments LLC, Orlando, Florida.</p>
+  </footer>
+
+</div>
+</body>
+</html>
