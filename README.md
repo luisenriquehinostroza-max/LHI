@@ -8,6 +8,10 @@ Built by Hinos Investments LLC — [hinosinvestments.com](https://hinosinvestmen
 
 This repository hosts the marketing site for Vinya via GitHub Pages.
 
+- `index.html` — main site (wine/vineyard framing)
+- `agriculture.html` — generic version for small agricultural producers
+- `demo.html` — interactive demo with sample data
+
 ## Contact
 
 luis@hinosinvestments.com

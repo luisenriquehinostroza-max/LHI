@@ -31,7 +31,13 @@
   h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; margin:0; color:var(--ink);}
   .mono{font-family:'IBM Plex Mono', monospace;}
 
-  header{padding:28px 0 20px 0;}
+  header{padding:28px 0 20px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+  .back-link{
+    font-size:0.88rem; color:var(--ink-soft); text-decoration:none;
+    border:1px solid var(--rule); padding:7px 14px; border-radius:20px;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .back-link:hover{color:var(--ink); border-color:var(--ink);}
   .wordmark{font-family:'Fraunces', serif; font-weight:600; font-size:1.2rem;}
   .wordmark span{color:var(--amber);}
   .demo-tag{font-size:0.78rem; color:var(--ink-soft); background:var(--paper-light); border:1px solid var(--rule); padding:3px 10px; border-radius:20px; margin-left:10px;}
@@ -114,8 +120,11 @@
 <div class="wrap">
 
   <header>
-    <div class="wordmark">vin<span>y</span>a <span class="demo-tag">Sample data · Interactive demo</span></div>
-    <p class="subtitle">This is a working prototype using representative sample data for a small winery, showing how each module surfaces a risk or opportunity before it becomes a loss.</p>
+    <div>
+      <div class="wordmark">vin<span>y</span>a <span class="demo-tag">Sample data · Interactive demo</span></div>
+      <p class="subtitle">This is a working prototype using representative sample data for a small winery, showing how each module surfaces a risk or opportunity before it becomes a loss.</p>
+    </div>
+    <a class="back-link" href="index.html">&larr; Back to home</a>
   </header>
 
   <div class="tabs">
