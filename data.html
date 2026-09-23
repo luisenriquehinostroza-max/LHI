@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinya — What Data You'd Need to Provide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #EDE6D6;
+    --paper-light: #FAF7EF;
+    --ink: #1F2B22;
+    --amber: #C98A3E;
+    --vine: #4B6B4F;
+    --rule: #B8AD93;
+    --ink-soft: #4A5449;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #1A1F19; --paper-light: #232920; --ink: #EDE6D6;
+      --ink-soft: #C9C2AE; --rule: #4A5040; --amber: #E0A85C; --vine: #8AAE8E;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #1A1F19; --paper-light: #232920; --ink: #EDE6D6;
+    --ink-soft: #C9C2AE; --rule: #4A5040; --amber: #E0A85C; --vine: #8AAE8E;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 24px 60px 24px;}
+  h1,h2{font-family:'Fraunces', serif; font-weight:600; margin:0; color:var(--ink);}
+  p{margin:0 0 1em 0; color:var(--ink-soft); max-width:70ch;}
+
+  header{padding:28px 0 20px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+  .wordmark{font-family:'Fraunces', serif; font-weight:600; font-size:1.2rem;}
+  .wordmark span{color:var(--amber);}
+  .back-link{
+    font-size:0.88rem; color:var(--ink-soft); text-decoration:none;
+    border:1px solid var(--rule); padding:7px 14px; border-radius:20px; white-space:nowrap;
+  }
+  .back-link:hover{color:var(--ink); border-color:var(--ink);}
+
+  .intro{font-size:1.02rem; margin:20px 0 8px 0;}
+  .rule{border:none; border-top:1px solid var(--rule); margin:36px 0 24px 0;}
+
+  .module-title{font-size:1.25rem; margin-bottom:14px;}
+
+  table{width:100%; border-collapse:collapse; margin-bottom:12px; font-size:0.88rem;}
+  caption{text-align:left; font-size:1.25rem; font-family:'Fraunces', serif; font-weight:600; margin-bottom:14px; color:var(--ink);}
+  th{
+    text-align:left; background:var(--ink); color:var(--paper-light);
+    padding:10px 12px; font-weight:600; font-size:0.82rem;
+  }
+  td{padding:10px 12px; border-bottom:1px solid var(--rule); vertical-align:top;}
+  tr:nth-child(even) td{background:var(--paper-light);}
+  .provide{color:var(--vine); font-weight:500;}
+
+  .summary-box{
+    background:var(--paper-light); border:1px solid var(--rule); border-radius:3px;
+    padding:24px 26px; margin-top:16px;
+  }
+  .summary-box h2{font-size:1.15rem; margin-bottom:10px;}
+
+  footer{padding:30px 0 0 0; border-top:1px solid var(--rule); margin-top:30px; font-size:0.82rem; color:var(--ink-soft);}
+
+  @media (max-width:640px){
+    table{font-size:0.78rem;}
+    th,td{padding:7px 8px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="wordmark">vin<span>y</span>a</div>
+    <a class="back-link" href="index.html">&larr; Back to home</a>
+  </header>
+
+  <h1>What data you'd need to provide</h1>
+  <p class="intro">This page shows, module by module, what information was used to build the interactive demo (with sample data), and what kind of information a real producer would need to provide for the platform to work with their own operation. Most of this data likely already exists in a producer's current records (spreadsheets, field notebooks, or accounting system) — even if it's not in Odoo yet.</p>
+
+  <hr class="rule">
+
+  <table>
+    <caption>1. Spoilage Risk Alerts</caption>
+    <thead>
+      <tr><th>Field</th><th>What it means</th><th>Wine example</th><th>Agriculture example</th><th>What you'd provide</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Batch/Lot ID</td><td>Unique identifier for a production batch</td><td>Batch 24-B · Chambourcin</td><td>Batch 24-B · Tomatoes</td><td class="provide">Your existing lot numbering</td></tr>
+      <tr><td>Production Stage</td><td>Which phase of the process it's in</td><td>Fermentation</td><td>Ripening Room</td><td class="provide">The stages your product moves through</td></tr>
+      <tr><td>Days Elapsed</td><td>How long it's been in this stage</td><td>18 days</td><td>9 days</td><td class="provide">Date the batch entered its current stage</td></tr>
+      <tr><td>Historical Average</td><td>Typical/expected time for this stage</td><td>12 days</td><td>6 days</td><td class="provide">Your own historical records</td></tr>
+      <tr><td>Status</td><td>Whether it's on track or at risk</td><td>At risk (+6 days)</td><td>At risk (+3 days)</td><td>Calculated automatically</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>2. Harvest-to-Market Yield</caption>
+    <thead>
+      <tr><th>Field</th><th>What it means</th><th>Wine example</th><th>Agriculture example</th><th>What you'd provide</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Field/Block</td><td>Where the product was grown</td><td>Block A (Chambourcin)</td><td>Field 1 (Strawberries)</td><td class="provide">Your own field/block naming</td></tr>
+      <tr><td>Harvested Volume</td><td>Raw amount collected</td><td>4.2 tons</td><td>2.5 tons</td><td class="provide">Harvest records</td></tr>
+      <tr><td>Expected Output</td><td>Historical/typical conversion rate</td><td>~2,600 cases</td><td>~2,500 cases</td><td class="provide">Historical yield data</td></tr>
+      <tr><td>Actual Output</td><td>What was actually produced/packed</td><td>1,850 cases</td><td>1,800 cases</td><td class="provide">Production/packing records</td></tr>
+      <tr><td>Yield Variance</td><td>% difference from expected</td><td>-29%</td><td>-28%</td><td>Calculated automatically</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>3. Demand-Aligned Production Planning</caption>
+    <thead>
+      <tr><th>Field</th><th>What it means</th><th>Wine example</th><th>Agriculture example</th><th>What you'd provide</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Product</td><td>Name of the product line</td><td>Chambourcin Reserve</td><td>Strawberries</td><td class="provide">Your product catalog</td></tr>
+      <tr><td>Planned Production</td><td>Volume you intend to produce</td><td>1,850 cases</td><td>1,800 cases</td><td class="provide">Your production plan</td></tr>
+      <tr><td>Projected Demand</td><td>Expected sales based on history</td><td>1,200 cases</td><td>1,150 cases</td><td class="provide">Historical sales data</td></tr>
+      <tr><td>Variance</td><td>Over/under production risk</td><td>+54% over demand</td><td>+57% over demand</td><td>Calculated automatically</td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>4. Margins by Product</caption>
+    <thead>
+      <tr><th>Field</th><th>What it means</th><th>Wine example</th><th>Agriculture example</th><th>What you'd provide</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Product</td><td>Name of the product</td><td>Chambourcin Reserve</td><td>Strawberries</td><td class="provide">Your product catalog</td></tr>
+      <tr><td>Sale Price</td><td>Price per unit</td><td>$24.00</td><td>$22.00</td><td class="provide">Your price list</td></tr>
+      <tr><td>Raw Material Cost</td><td>Cost of inputs per unit</td><td>$4.20</td><td>$6.50</td><td class="provide">Your cost accounting</td></tr>
+      <tr><td>Labor Cost</td><td>Labor cost per unit</td><td>$3.10</td><td>$4.20</td><td class="provide">Your cost accounting</td></tr>
+      <tr><td>Overhead</td><td>Allocated overhead per unit</td><td>$2.80</td><td>$3.10</td><td class="provide">Your cost accounting</td></tr>
+      <tr><td>Packaging</td><td>Packaging cost per unit</td><td>$1.90</td><td>$2.30</td><td class="provide">Your cost accounting</td></tr>
+      <tr><td>Total Cost</td><td>Sum of the costs above</td><td>$12.00</td><td>$16.10</td><td>Calculated automatically</td></tr>
+      <tr><td>Margin %</td><td>Profit margin</td><td>50%</td><td>27%</td><td>Calculated automatically</td></tr>
+    </tbody>
+  </table>
+
+  <div class="summary-box">
+    <h2>The short version</h2>
+    <p style="margin-bottom:0;">In essence, the platform needs four kinds of information most producers already track in some form: (1) start dates for each batch/stage, (2) harvest and production volumes, (3) sales history, and (4) per-unit costs. Nothing new to collect — Vinya simply organizes and compares what you already have to generate the alerts automatically.</p>
+  </div>
+
+  <footer>
+    <p>Vinya is a project in development by Hinos Investments LLC, Orlando, Florida.</p>
+  </footer>
+
+</div>
+</body>
+</html>
