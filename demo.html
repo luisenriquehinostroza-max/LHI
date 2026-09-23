@@ -32,31 +32,18 @@
   .mono{font-family:'IBM Plex Mono', monospace;}
 
   header{padding:28px 0 20px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
-  .wordmark{font-family:'Fraunces', serif; font-weight:600; font-size:1.2rem;}
-  .wordmark span{color:var(--amber);}
-  .demo-tag{font-size:0.78rem; color:var(--ink-soft); background:var(--paper-light); border:1px solid var(--rule); padding:3px 10px; border-radius:20px; margin-left:10px;}
-  .subtitle{color:var(--ink-soft); font-size:0.95rem; margin-top:8px; max-width:60ch;}
   .back-link{
     font-size:0.88rem; color:var(--ink-soft); text-decoration:none;
     border:1px solid var(--rule); padding:7px 14px; border-radius:20px;
     white-space:nowrap; flex-shrink:0;
   }
   .back-link:hover{color:var(--ink); border-color:var(--ink);}
+  .wordmark{font-family:'Fraunces', serif; font-weight:600; font-size:1.2rem;}
+  .wordmark span{color:var(--amber);}
+  .demo-tag{font-size:0.78rem; color:var(--ink-soft); background:var(--paper-light); border:1px solid var(--rule); padding:3px 10px; border-radius:20px; margin-left:10px;}
+  .subtitle{color:var(--ink-soft); font-size:0.95rem; margin-top:8px; max-width:60ch;}
 
-  /* Industry switcher */
-  .industry-switch{
-    display:flex; gap:8px; margin-top:24px; padding:5px; background:var(--paper-light);
-    border:1px solid var(--rule); border-radius:8px; width:fit-content;
-  }
-  .industry-btn{
-    padding:9px 20px; font-size:0.9rem; font-weight:500; color:var(--ink-soft);
-    background:transparent; border:none; border-radius:6px; cursor:pointer;
-    font-family:'IBM Plex Sans', sans-serif; transition:all 0.15s;
-  }
-  .industry-btn.active{background:var(--ink); color:var(--paper-light);}
-  .industry-btn:not(.active):hover{color:var(--ink);}
-
-  .tabs{display:flex; gap:4px; margin:20px 0 0 0; border-bottom:1px solid var(--rule); overflow-x:auto;}
+  .tabs{display:flex; gap:4px; margin:24px 0 0 0; border-bottom:1px solid var(--rule); overflow-x:auto;}
   .tab{
     padding:12px 18px; font-size:0.92rem; font-weight:500; color:var(--ink-soft);
     cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap;
@@ -84,7 +71,10 @@
   .lot-days{text-align:right;}
   .lot-days .val{font-family:'Fraunces', serif; font-size:1.3rem; font-weight:600;}
   .lot-days .lbl{font-size:0.75rem; color:var(--ink-soft);}
-  .badge{font-size:0.78rem; font-weight:600; padding:5px 12px; border-radius:20px; white-space:nowrap;}
+  .badge{
+    font-size:0.78rem; font-weight:600; padding:5px 12px; border-radius:20px;
+    white-space:nowrap;
+  }
   .badge.risk{background:var(--red-bg); color:var(--red);}
   .badge.ok{background:var(--vine-bg); color:var(--vine);}
 
@@ -101,7 +91,10 @@
 
   /* Module 4: margins table */
   table{width:100%; border-collapse:collapse; font-size:0.9rem;}
-  th{text-align:left; font-weight:600; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink-soft); padding:8px 12px; border-bottom:1px solid var(--rule);}
+  th{
+    text-align:left; font-weight:600; font-size:0.78rem; text-transform:uppercase;
+    letter-spacing:0.03em; color:var(--ink-soft); padding:8px 12px; border-bottom:1px solid var(--rule);
+  }
   td{padding:12px; border-bottom:1px solid var(--rule);}
   tr:last-child td{border-bottom:none;}
   .num{text-align:right; font-family:'IBM Plex Mono', monospace;}
@@ -128,20 +121,15 @@
 
   <header>
     <div>
-      <div class="wordmark">vin<span>y</span>a <span class="demo-tag" id="demo-tag">Sample data · Interactive demo</span></div>
-      <p class="subtitle" id="demo-subtitle">This is a working prototype using representative sample data for a small winery, showing how each module surfaces a risk or opportunity before it becomes a loss.</p>
+      <div class="wordmark">vin<span>y</span>a <span class="demo-tag">Sample data · Interactive demo</span></div>
+      <p class="subtitle">This is a working prototype using representative sample data for a small winery, showing how each module surfaces a risk or opportunity before it becomes a loss.</p>
     </div>
     <a class="back-link" href="index.html">&larr; Back to home</a>
   </header>
 
-  <div class="industry-switch">
-    <button class="industry-btn active" data-industry="wine">🍇 Wine Demo</button>
-    <button class="industry-btn" data-industry="agriculture">🌾 Agriculture Demo</button>
-  </div>
-
   <div class="tabs">
     <div class="tab active" data-tab="alerts">Spoilage Risk Alerts</div>
-    <div class="tab" data-tab="yield">Harvest-to-Market Yield</div>
+    <div class="tab" data-tab="yield">Harvest-to-Bottle Yield</div>
     <div class="tab" data-tab="planning">Production Planning</div>
     <div class="tab" data-tab="margins">Margins by Product</div>
   </div>
@@ -150,18 +138,95 @@
   <div class="panel active" id="panel-alerts">
     <div class="panel-head">
       <h2>Active batches, sorted by risk</h2>
-      <p>Each batch is compared against the historical average time spent in its current stage. Batches exceeding the average are flagged.</p>
+      <p>Each batch is compared against the historical average time spent in its current stage for that varietal. Batches exceeding the average are flagged.</p>
     </div>
-    <div id="alerts-list"></div>
+
+    <div class="lot-card risk">
+      <div>
+        <div class="lot-id">Batch 24-C · Vidal Blanc</div>
+        <div class="lot-meta">Cold Stabilization · Historical average: 14 days</div>
+      </div>
+      <div class="lot-days"><div class="val" style="color:var(--red)">22</div><div class="lbl">days elapsed</div></div>
+      <div class="badge risk">+8 days over avg</div>
+    </div>
+
+    <div class="lot-card risk">
+      <div>
+        <div class="lot-id">Batch 24-B · Chambourcin</div>
+        <div class="lot-meta">Fermentation · Historical average: 12 days</div>
+      </div>
+      <div class="lot-days"><div class="val" style="color:var(--red)">18</div><div class="lbl">days elapsed</div></div>
+      <div class="badge risk">+6 days over avg</div>
+    </div>
+
+    <div class="lot-card ok">
+      <div>
+        <div class="lot-id">Batch 24-D · Norton</div>
+        <div class="lot-meta">Barrel Aging · Historical average: 180 days</div>
+      </div>
+      <div class="lot-days"><div class="val">45</div><div class="lbl">days elapsed</div></div>
+      <div class="badge ok">On track</div>
+    </div>
+
+    <div class="lot-card ok">
+      <div>
+        <div class="lot-id">Batch 24-A · Chambourcin</div>
+        <div class="lot-meta">Fermentation · Historical average: 12 days</div>
+      </div>
+      <div class="lot-days"><div class="val">8</div><div class="lbl">days elapsed</div></div>
+      <div class="badge ok">On track</div>
+    </div>
+
+    <div class="lot-card ok">
+      <div>
+        <div class="lot-id">Batch 24-E · Traminette</div>
+        <div class="lot-meta">Fermentation · Historical average: 11 days</div>
+      </div>
+      <div class="lot-days"><div class="val">10</div><div class="lbl">days elapsed</div></div>
+      <div class="badge ok">On track</div>
+    </div>
+
+    <div class="lot-card ok">
+      <div>
+        <div class="lot-id">Batch 24-F · Vidal Blanc</div>
+        <div class="lot-meta">Bottling Prep · Historical average: 5 days</div>
+      </div>
+      <div class="lot-days"><div class="val">3</div><div class="lbl">days elapsed</div></div>
+      <div class="badge ok">On track</div>
+    </div>
   </div>
 
   <!-- Module 2 -->
   <div class="panel" id="panel-yield">
     <div class="panel-head">
-      <h2>Harvested volume vs. packed/finished output</h2>
-      <p>Compares what was harvested by field/block against what actually reached market-ready form, flagging areas yielding below the expected conversion rate.</p>
+      <h2>Harvested volume vs. bottled output</h2>
+      <p>Compares what was harvested by block/varietal against what was actually bottled, flagging blocks yielding below the expected conversion rate.</p>
     </div>
-    <div id="yield-list"></div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Chambourcin — Block A</span><span class="flag">29% below expected</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div><div class="bar-fill actual" style="width:71%"></div><div class="bar-marker" style="left:100%"></div></div>
+      <div class="bar-caption"><span>Harvested: 4.2 tons</span><span>Bottled: 1,850 cases (expected ~2,600)</span></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Vidal Blanc — Block B</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div><div class="bar-fill actual" style="width:100%"></div><div class="bar-marker" style="left:100%"></div></div>
+      <div class="bar-caption"><span>Harvested: 3.8 tons</span><span>Bottled: 2,280 cases (on target)</span></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Norton — Block C</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div><div class="bar-fill actual" style="width:98%"></div><div class="bar-marker" style="left:100%"></div></div>
+      <div class="bar-caption"><span>Harvested: 2.1 tons</span><span>Bottled: 1,260 cases (on target)</span></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Traminette — Block D</span><span class="flag">20% below expected</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div><div class="bar-fill actual" style="width:80%"></div><div class="bar-marker" style="left:100%"></div></div>
+      <div class="bar-caption"><span>Harvested: 3.0 tons</span><span>Bottled: 1,440 cases (expected ~1,800)</span></div>
+    </div>
+
     <div class="legend">
       <div class="legend-item"><span class="legend-dot" style="background:var(--vine); opacity:0.35;"></span> Expected output</div>
       <div class="legend-item"><span class="legend-dot" style="background:var(--amber);"></span> Actual output</div>
@@ -172,9 +237,33 @@
   <div class="panel" id="panel-planning">
     <div class="panel-head">
       <h2>Planned production vs. projected demand</h2>
-      <p>Compares planned volume against sales projections built from historical data, flagging products at risk of overproduction.</p>
+      <p>Compares planned bottling volume against 12-month sales projections built from historical sales data, flagging products at risk of overproduction.</p>
     </div>
-    <div id="planning-list"></div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Chambourcin Reserve</span><span class="flag">54% over projected demand</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:65%"></div><div class="bar-fill actual" style="width:100%"></div><div class="bar-marker" style="left:65%"></div></div>
+      <div class="bar-caption"><span>Planned: 1,850 cases</span><span>Projected demand: 1,200 cases</span></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Vidal Blanc</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div><div class="bar-fill actual" style="width:95%"></div><div class="bar-marker" style="left:100%"></div></div>
+      <div class="bar-caption"><span>Planned: 2,280 cases</span><span>Projected demand: 2,400 cases</span></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Norton</span><span class="flag">15% over projected demand</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:87%"></div><div class="bar-fill actual" style="width:100%"></div><div class="bar-marker" style="left:87%"></div></div>
+      <div class="bar-caption"><span>Planned: 1,260 cases</span><span>Projected demand: 1,100 cases</span></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-row-head"><span class="name">Traminette</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div><div class="bar-fill actual" style="width:96%"></div><div class="bar-marker" style="left:100%"></div></div>
+      <div class="bar-caption"><span>Planned: 1,440 cases</span><span>Projected demand: 1,500 cases</span></div>
+    </div>
+
     <div class="legend">
       <div class="legend-item"><span class="legend-dot" style="background:var(--vine); opacity:0.35;"></span> Projected demand</div>
       <div class="legend-item"><span class="legend-dot" style="background:var(--amber);"></span> Planned production</div>
@@ -184,14 +273,36 @@
   <!-- Module 4 -->
   <div class="panel" id="panel-margins">
     <div class="panel-head">
-      <h2>Real cost and margin per unit</h2>
-      <p>Breaks down raw material, labor, overhead, and packaging cost per unit against sale price, calculated from data already in Accounting and Inventory.</p>
+      <h2>Real cost and margin per bottle</h2>
+      <p>Breaks down raw material, labor, overhead, and packaging cost per bottle against sale price, calculated from data already in Accounting and Inventory.</p>
     </div>
-    <table id="margins-table">
+
+    <table>
       <thead>
         <tr><th>Product</th><th class="num">Price</th><th class="num">Raw Material</th><th class="num">Labor</th><th class="num">Overhead</th><th class="num">Packaging</th><th class="num">Total Cost</th><th class="num">Margin</th></tr>
       </thead>
-      <tbody id="margins-body"></tbody>
+      <tbody>
+        <tr>
+          <td>Chambourcin Reserve</td>
+          <td class="num">$24.00</td><td class="num">$4.20</td><td class="num">$3.10</td><td class="num">$2.80</td><td class="num">$1.90</td>
+          <td class="num">$12.00</td><td class="num margin-pct good">50%</td>
+        </tr>
+        <tr>
+          <td>Vidal Blanc</td>
+          <td class="num">$18.00</td><td class="num">$3.60</td><td class="num">$2.70</td><td class="num">$2.00</td><td class="num">$1.20</td>
+          <td class="num">$9.50</td><td class="num margin-pct good">47%</td>
+        </tr>
+        <tr>
+          <td>Norton</td>
+          <td class="num">$22.00</td><td class="num">$6.90</td><td class="num">$4.10</td><td class="num">$2.60</td><td class="num">$1.20</td>
+          <td class="num">$14.80</td><td class="num margin-pct low">33%</td>
+        </tr>
+        <tr>
+          <td>Traminette</td>
+          <td class="num">$19.00</td><td class="num">$3.90</td><td class="num">$2.90</td><td class="num">$2.20</td><td class="num">$1.20</td>
+          <td class="num">$10.20</td><td class="num margin-pct good">46%</td>
+        </tr>
+      </tbody>
     </table>
     <div class="legend">
       <div class="legend-item"><span class="margin-pct low" style="font-size:0.9rem;">■</span> Below 40% margin — worth reviewing pricing or cost structure</div>
@@ -199,133 +310,20 @@
   </div>
 
   <footer>
-    <p id="demo-footer">Prototype built by Luis Hinostroza (Hinos Investments LLC) to illustrate the proposed Vinya platform. Data shown is illustrative, not from an actual operating winery.</p>
+    <p>Prototype built by Luis Hinostroza (Hinos Investments LLC) to illustrate the proposed Vinya platform. Data shown is illustrative, not from an actual operating winery.</p>
   </footer>
 
 </div>
 
 <script>
-const DATA = {
-  wine: {
-    tag: "Sample data · Interactive demo",
-    subtitle: "This is a working prototype using representative sample data for a small winery, showing how each module surfaces a risk or opportunity before it becomes a loss.",
-    footer: "Prototype built by Luis Hinostroza (Hinos Investments LLC) to illustrate the proposed Vinya platform. Data shown is illustrative, not from an actual operating winery.",
-    alerts: [
-      {id:"Batch 24-C · Vidal Blanc", meta:"Cold Stabilization · Historical average: 14 days", days:22, avgFlag:"+8 days over avg", risk:true},
-      {id:"Batch 24-B · Chambourcin", meta:"Fermentation · Historical average: 12 days", days:18, avgFlag:"+6 days over avg", risk:true},
-      {id:"Batch 24-D · Norton", meta:"Barrel Aging · Historical average: 180 days", days:45, avgFlag:"On track", risk:false},
-      {id:"Batch 24-A · Chambourcin", meta:"Fermentation · Historical average: 12 days", days:8, avgFlag:"On track", risk:false},
-      {id:"Batch 24-E · Traminette", meta:"Fermentation · Historical average: 11 days", days:10, avgFlag:"On track", risk:false},
-      {id:"Batch 24-F · Vidal Blanc", meta:"Bottling Prep · Historical average: 5 days", days:3, avgFlag:"On track", risk:false},
-    ],
-    yields: [
-      {name:"Chambourcin — Block A", flag:"29% below expected", expectPct:100, actualPct:71, cap1:"Harvested: 4.2 tons", cap2:"Bottled: 1,850 cases (expected ~2,600)"},
-      {name:"Vidal Blanc — Block B", flag:null, expectPct:100, actualPct:100, cap1:"Harvested: 3.8 tons", cap2:"Bottled: 2,280 cases (on target)"},
-      {name:"Norton — Block C", flag:null, expectPct:100, actualPct:98, cap1:"Harvested: 2.1 tons", cap2:"Bottled: 1,260 cases (on target)"},
-      {name:"Traminette — Block D", flag:"20% below expected", expectPct:100, actualPct:80, cap1:"Harvested: 3.0 tons", cap2:"Bottled: 1,440 cases (expected ~1,800)"},
-    ],
-    planning: [
-      {name:"Chambourcin Reserve", flag:"54% over projected demand", demandPct:65, plannedPct:100, cap1:"Planned: 1,850 cases", cap2:"Projected demand: 1,200 cases"},
-      {name:"Vidal Blanc", flag:null, demandPct:100, plannedPct:95, cap1:"Planned: 2,280 cases", cap2:"Projected demand: 2,400 cases"},
-      {name:"Norton", flag:"15% over projected demand", demandPct:87, plannedPct:100, cap1:"Planned: 1,260 cases", cap2:"Projected demand: 1,100 cases"},
-      {name:"Traminette", flag:null, demandPct:100, plannedPct:96, cap1:"Planned: 1,440 cases", cap2:"Projected demand: 1,500 cases"},
-    ],
-    margins: [
-      {name:"Chambourcin Reserve", price:"$24.00", raw:"$4.20", labor:"$3.10", overhead:"$2.80", pack:"$1.90", cost:"$12.00", margin:"50%", low:false},
-      {name:"Vidal Blanc", price:"$18.00", raw:"$3.60", labor:"$2.70", overhead:"$2.00", pack:"$1.20", cost:"$9.50", margin:"47%", low:false},
-      {name:"Norton", price:"$22.00", raw:"$6.90", labor:"$4.10", overhead:"$2.60", pack:"$1.20", cost:"$14.80", margin:"33%", low:true},
-      {name:"Traminette", price:"$19.00", raw:"$3.90", labor:"$2.90", overhead:"$2.20", pack:"$1.20", cost:"$10.20", margin:"46%", low:false},
-    ]
-  },
-  agriculture: {
-    tag: "Sample data · Interactive demo",
-    subtitle: "This is a working prototype using representative sample data for a small produce farm, showing how each module surfaces a risk or opportunity before it becomes a loss.",
-    footer: "Prototype built by Luis Hinostroza (Hinos Investments LLC) to illustrate the proposed Vinya platform. Data shown is illustrative, not from an actual operating farm.",
-    alerts: [
-      {id:"Batch 24-B · Tomatoes", meta:"Ripening Room · Historical average: 6 days", days:9, avgFlag:"+3 days over avg", risk:true},
-      {id:"Batch 24-C · Strawberries", meta:"Cold Storage · Historical average: 4 days", days:6, avgFlag:"+2 days over avg", risk:true},
-      {id:"Batch 24-D · Leafy Greens", meta:"Cold Storage · Historical average: 3 days", days:2, avgFlag:"On track", risk:false},
-      {id:"Batch 24-A · Sweet Corn", meta:"Field Storage · Historical average: 2 days", days:1, avgFlag:"On track", risk:false},
-      {id:"Batch 24-E · Blueberries", meta:"Cold Storage · Historical average: 5 days", days:3, avgFlag:"On track", risk:false},
-      {id:"Batch 24-F · Tomatoes", meta:"Packing · Historical average: 2 days", days:1, avgFlag:"On track", risk:false},
-    ],
-    yields: [
-      {name:"Strawberries — Field 1", flag:"28% below expected", expectPct:100, actualPct:72, cap1:"Harvested: 2.5 tons", cap2:"Packed: 1,800 cases (expected ~2,500)"},
-      {name:"Tomatoes — Field 2", flag:null, expectPct:100, actualPct:95, cap1:"Harvested: 6.0 tons", cap2:"Packed: 5,700 cases (on target)"},
-      {name:"Leafy Greens — Field 3", flag:null, expectPct:100, actualPct:97, cap1:"Harvested: 3.2 tons", cap2:"Packed: 3,050 cases (on target)"},
-      {name:"Sweet Corn — Field 4", flag:"21% below expected", expectPct:100, actualPct:79, cap1:"Harvested: 4.5 tons", cap2:"Packed: 3,400 cases (expected ~4,300)"},
-    ],
-    planning: [
-      {name:"Strawberries", flag:"57% over projected demand", demandPct:64, plannedPct:100, cap1:"Planned: 1,800 cases", cap2:"Projected demand: 1,150 cases"},
-      {name:"Tomatoes", flag:null, demandPct:100, plannedPct:97, cap1:"Planned: 5,700 cases", cap2:"Projected demand: 5,900 cases"},
-      {name:"Leafy Greens", flag:"15% over projected demand", demandPct:87, plannedPct:100, cap1:"Planned: 3,050 cases", cap2:"Projected demand: 2,650 cases"},
-      {name:"Sweet Corn", flag:null, demandPct:100, plannedPct:97, cap1:"Planned: 3,400 cases", cap2:"Projected demand: 3,500 cases"},
-    ],
-    margins: [
-      {name:"Strawberries", price:"$22.00", raw:"$6.50", labor:"$4.20", overhead:"$3.10", pack:"$2.30", cost:"$16.10", margin:"27%", low:true},
-      {name:"Tomatoes", price:"$18.00", raw:"$4.30", labor:"$2.90", overhead:"$1.60", pack:"$0.60", cost:"$9.40", margin:"48%", low:false},
-      {name:"Leafy Greens", price:"$15.00", raw:"$3.60", labor:"$2.50", overhead:"$1.20", pack:"$0.50", cost:"$7.80", margin:"48%", low:false},
-      {name:"Sweet Corn", price:"$12.00", raw:"$3.10", labor:"$2.20", overhead:"$1.10", pack:"$0.50", cost:"$6.90", margin:"43%", low:false},
-    ]
-  }
-};
-
-function render(industry){
-  const d = DATA[industry];
-  document.getElementById('demo-tag').textContent = d.tag;
-  document.getElementById('demo-subtitle').textContent = d.subtitle;
-  document.getElementById('demo-footer').textContent = d.footer;
-
-  document.getElementById('alerts-list').innerHTML = d.alerts.map(a => `
-    <div class="lot-card ${a.risk ? 'risk' : 'ok'}">
-      <div>
-        <div class="lot-id">${a.id}</div>
-        <div class="lot-meta">${a.meta}</div>
-      </div>
-      <div class="lot-days"><div class="val" style="${a.risk ? 'color:var(--red)' : ''}">${a.days}</div><div class="lbl">days elapsed</div></div>
-      <div class="badge ${a.risk ? 'risk' : 'ok'}">${a.avgFlag}</div>
-    </div>`).join('');
-
-  document.getElementById('yield-list').innerHTML = d.yields.map(y => `
-    <div class="bar-row">
-      <div class="bar-row-head"><span class="name">${y.name}</span>${y.flag ? `<span class="flag">${y.flag}</span>` : ''}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${y.expectPct}%"></div><div class="bar-fill actual" style="width:${y.actualPct}%"></div><div class="bar-marker" style="left:${y.expectPct}%"></div></div>
-      <div class="bar-caption"><span>${y.cap1}</span><span>${y.cap2}</span></div>
-    </div>`).join('');
-
-  document.getElementById('planning-list').innerHTML = d.planning.map(p => `
-    <div class="bar-row">
-      <div class="bar-row-head"><span class="name">${p.name}</span>${p.flag ? `<span class="flag">${p.flag}</span>` : ''}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${p.demandPct}%"></div><div class="bar-fill actual" style="width:${p.plannedPct}%"></div><div class="bar-marker" style="left:${p.demandPct}%"></div></div>
-      <div class="bar-caption"><span>${p.cap1}</span><span>${p.cap2}</span></div>
-    </div>`).join('');
-
-  document.getElementById('margins-body').innerHTML = d.margins.map(m => `
-    <tr>
-      <td>${m.name}</td>
-      <td class="num">${m.price}</td><td class="num">${m.raw}</td><td class="num">${m.labor}</td><td class="num">${m.overhead}</td><td class="num">${m.pack}</td>
-      <td class="num">${m.cost}</td><td class="num margin-pct ${m.low ? 'low' : 'good'}">${m.margin}</td>
-    </tr>`).join('');
-}
-
-document.querySelectorAll('.industry-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.industry-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    render(btn.dataset.industry);
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
   });
-});
-
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-  });
-});
-
-render('wine');
 </script>
 </body>
 </html>

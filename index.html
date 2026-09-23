@@ -56,7 +56,7 @@
 
   header.nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding:28px 0 0 0;
+    padding:28px 0 0 0; flex-wrap:wrap; gap:12px;
   }
   .wordmark{font-family:'Fraunces', serif; font-weight:600; font-size:1.3rem; letter-spacing:0.01em;}
   .wordmark span{color:var(--amber);}
@@ -141,7 +141,7 @@
     .hero h1{font-size:2rem;}
     .module{grid-template-columns:1fr; gap:6px;}
     .stat-row{gap:24px;}
-    .nav-links{display:none;}
+    .nav-links{gap:16px; font-size:0.85rem; width:100%; overflow-x:auto; padding-bottom:4px;}
   }
 </style>
 </head>
@@ -162,7 +162,7 @@
   <section class="hero">
     <span class="hero-tag">For small agricultural producers in the U.S.</span>
     <h1>Know a batch is at risk before you lose it</h1>
-    <p class="lede">Vinya turns the harvest, inventory, and sales records you already keep — on paper, in spreadsheets, or in a system — into early warnings, so spoilage gets caught before it happens, not after.</p>
+    <p class="lede">Vinya uses machine learning to turn the harvest, inventory, and sales records you already keep — on paper, in spreadsheets, or in a system — into early warnings, so spoilage gets caught before it happens, not after.</p>
 
     <div class="lot-diagram">
       <div class="lot-diagram-label">Lot 24-B · Fermentation · Varietal: Chambourcin</div>
@@ -208,7 +208,7 @@
   <section id="platform">
     <div class="kicker">The platform</div>
     <h2>Four ways to see the risk before the cost</h2>
-    <p>Each module builds on your own production data. If you're already tracking it digitally, Vinya works with what you have. If you're not yet, we help set that up as part of getting started.</p>
+    <p>Each module applies machine learning models, trained on your own historical data, to spot patterns a spreadsheet or a static report would miss. If you're already tracking data digitally, Vinya works with what you have. If you're not yet, we help set that up as part of getting started.</p>
 
     <div class="modules">
       <div class="module">
