@@ -1,0 +1,253 @@
+#at-risk,
+#report {
+  scroll-margin-top: 5rem;
+}
+
+/* 1. Hero measure — override homepage h1 max-width */
+#hero-title {
+  max-width: 42rem;
+}
+
+@media (max-width: 860px) {
+  #hero-title {
+    max-width: 42rem;
+  }
+}
+
+/* 2. Solution 1 dominant headline */
+#at-risk h2 {
+  font-size: clamp(2.15rem, 4vw, 3.15rem);
+  max-width: 12em;
+  line-height: 1.18;
+  font-family: var(--serif);
+  font-weight: 500;
+}
+
+#margin,
+#tasting {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+/* 3. Stats beside copy on wide screens */
+#at-risk .at-risk-body {
+  display: grid;
+  grid-template-columns: minmax(0, 42rem) 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+#at-risk .at-risk-copy {
+  max-width: 42rem;
+}
+
+#at-risk .stats {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+  grid-template-columns: 1fr;
+}
+
+.num-risk {
+  color: var(--risk);
+}
+
+.num-good {
+  color: var(--good);
+}
+
+#at-risk .at-risk-copy .cta-row {
+  margin-top: 1.5rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.points {
+  margin: 1rem 0 1.5rem;
+  padding: 0 0 0 1.2rem;
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.points li { margin: 0.7rem 0; }
+
+.fine {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  max-width: 42rem;
+}
+
+/* 4. Comparison band as aside */
+.band-quiet {
+  padding: 32px 0;
+}
+
+#compare-title {
+  font-family: var(--sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+  max-width: 42rem;
+}
+
+.band-next { border-top: 1px solid var(--line); }
+
+/* 5. Preview — flat card, no bubble chrome */
+.preview {
+  max-width: 28rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-family: var(--sans);
+}
+
+.preview:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.preview-label {
+  margin: 0 0 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.bubble {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+.bubble + .bubble {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+/* 6. Form labels */
+.report-form .field label,
+.choices legend {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.report-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 28rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.report-form input[type="text"],
+.report-form input[type="email"],
+.report-form input[type="url"] {
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.report-form input:user-invalid { border-color: var(--risk); }
+
+.choices {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.choices label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink);
+}
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+button.btn {
+  border: 0;
+  font-family: var(--sans);
+  cursor: pointer;
+}
+
+button.btn:disabled,
+button.btn:disabled:hover {
+  cursor: default;
+  background: var(--muted);
+}
+
+.form-status {
+  margin: 0;
+  color: var(--risk);
+}
+
+.form-done {
+  margin: 0;
+  max-width: 42rem;
+}
+
+/* 7. Phone header — hide Solutions nav link */
+@media (max-width: 860px) {
+  #at-risk .at-risk-body {
+    grid-template-columns: 1fr;
+  }
+
+  .top-actions nav {
+    display: none;
+  }
+}
