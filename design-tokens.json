@@ -1,0 +1,44 @@
+{
+  "name": "Vinya",
+  "source": "Sampled from vinya-redesign/plates/perfect.jpg (1280×720). Text colors are darkened where the photo sample fails WCAG AA on paper.",
+  "color": {
+    "paper": { "value": "#f2ead8", "role": "Page canvas. Straw cream shared with a working winery site." },
+    "paper-2": { "value": "#e3d8c2", "role": "Quiet band and track fills." },
+    "card": { "value": "#fffdf8", "role": "Product cards floating on photography." },
+    "ink": { "value": "#171d1a", "role": "Text and primary buttons. Vine black. 14.3:1 on paper." },
+    "muted": { "value": "#5e584e", "role": "Secondary text. 6.2:1 on paper." },
+    "line": { "value": "#d9cdb6", "role": "Hairline rules, table dividers, badge borders." },
+    "cellar": { "value": "#171d1a", "role": "Dark surfaces. Same vine black as the ink." },
+    "grape": { "value": "#3d4651", "role": "Grape body. Brand accent for marks and large UI, not a purple SaaS color. White type is 9.4:1." },
+    "grape-bloom": { "value": "#7d8694", "role": "Bloom on the berry. Large type and icons on cellar only (5.0:1). Too light for small text on paper." },
+    "leaf": { "value": "#4e5418", "role": "Leaf, darkened for text and positive numbers. 7.2:1 on paper. Photo leaf is #757e36; that sample is fills only." },
+    "leaf-fill": { "value": "#757e36", "role": "Leaf as sampled. Fills and large marks. 3.9:1 on paper — not for small text." },
+    "risk": { "value": "#8a4b28", "role": "A batch or a margin that needs a look today. 6.6:1 on card." },
+    "good": { "value": "#1f6b3a", "role": "A line that is paying. 6.4:1 on card." }
+  },
+  "font": {
+    "serif": "Newsreader, Iowan Old Style, Georgia, serif",
+    "sans": "Source Sans 3, Segoe UI, sans-serif",
+    "weight": { "body": 400, "emphasis": 600, "display": 500 },
+    "size": {
+      "caption": "0.8rem",
+      "body": "1.125rem",
+      "lede": "1.2rem",
+      "h3": "1.2rem",
+      "h2": "clamp(1.7rem, 3vw, 2.15rem)",
+      "h1": "clamp(2.15rem, 4vw, 3.15rem)"
+    },
+    "lineHeight": { "display": 1.15, "body": 1.55 },
+    "tracking": { "display": "-0.02em", "label": "0.04em" }
+  },
+  "space": [4, 8, 12, 16, 24, 32, 48, 64, 80],
+  "radius": { "control": 2, "media": 8, "card": 10, "pill": 999 },
+  "layout": {
+    "content": 1120,
+    "gutter": 20,
+    "breakpoint": 860
+  },
+  "elevation": {
+    "card-on-photo": "0 10px 28px rgba(28, 25, 22, 0.12)"
+  }
+}
