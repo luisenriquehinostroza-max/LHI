@@ -129,15 +129,10 @@
   <header>
     <div>
       <div class="wordmark">vin<span>y</span>a <span class="demo-tag" id="demo-tag">Sample data · Interactive demo</span></div>
-      <p class="subtitle" id="demo-subtitle">This is a working prototype using representative sample data for a small winery, showing how each module surfaces a risk or opportunity before it becomes a loss.</p>
+      <p class="subtitle" id="demo-subtitle">This is a working prototype using representative sample data for a small produce farm, showing how each module surfaces a risk or opportunity before it becomes a loss.</p>
     </div>
     <a class="back-link" href="index.html">&larr; Back to home</a>
   </header>
-
-  <div class="industry-switch">
-    <button class="industry-btn active" data-industry="wine">🍇 Wine Demo</button>
-    <button class="industry-btn" data-industry="agriculture">🌾 Agriculture Demo</button>
-  </div>
 
   <div class="tabs">
     <div class="tab active" data-tab="alerts">Spoilage Risk Alerts</div>
@@ -199,44 +194,13 @@
   </div>
 
   <footer>
-    <p id="demo-footer">Prototype built by Luis Hinostroza (Hinos Investments LLC) to illustrate the proposed Vinya platform. Data shown is illustrative, not from an actual operating winery.</p>
+    <p id="demo-footer">Prototype built by Luis Hinostroza (Hinos Investments LLC) to illustrate the proposed Vinya platform. Data shown is illustrative, not from an actual operating farm.</p>
   </footer>
 
 </div>
 
 <script>
 const DATA = {
-  wine: {
-    tag: "Sample data · Interactive demo",
-    subtitle: "This is a working prototype using representative sample data for a small winery, showing how each module surfaces a risk or opportunity before it becomes a loss.",
-    footer: "Prototype built by Luis Hinostroza (Hinos Investments LLC) to illustrate the proposed Vinya platform. Data shown is illustrative, not from an actual operating winery.",
-    alerts: [
-      {id:"Batch 24-C · Vidal Blanc", meta:"Cold Stabilization · Historical average: 14 days", days:22, avgFlag:"+8 days over avg", risk:true},
-      {id:"Batch 24-B · Chambourcin", meta:"Fermentation · Historical average: 12 days", days:18, avgFlag:"+6 days over avg", risk:true},
-      {id:"Batch 24-D · Norton", meta:"Barrel Aging · Historical average: 180 days", days:45, avgFlag:"On track", risk:false},
-      {id:"Batch 24-A · Chambourcin", meta:"Fermentation · Historical average: 12 days", days:8, avgFlag:"On track", risk:false},
-      {id:"Batch 24-E · Traminette", meta:"Fermentation · Historical average: 11 days", days:10, avgFlag:"On track", risk:false},
-      {id:"Batch 24-F · Vidal Blanc", meta:"Bottling Prep · Historical average: 5 days", days:3, avgFlag:"On track", risk:false},
-    ],
-    yields: [
-      {name:"Chambourcin — Block A", flag:"29% below expected", expectPct:100, actualPct:71, cap1:"Harvested: 4.2 tons", cap2:"Bottled: 1,850 cases (expected ~2,600)"},
-      {name:"Vidal Blanc — Block B", flag:null, expectPct:100, actualPct:100, cap1:"Harvested: 3.8 tons", cap2:"Bottled: 2,280 cases (on target)"},
-      {name:"Norton — Block C", flag:null, expectPct:100, actualPct:98, cap1:"Harvested: 2.1 tons", cap2:"Bottled: 1,260 cases (on target)"},
-      {name:"Traminette — Block D", flag:"20% below expected", expectPct:100, actualPct:80, cap1:"Harvested: 3.0 tons", cap2:"Bottled: 1,440 cases (expected ~1,800)"},
-    ],
-    planning: [
-      {name:"Chambourcin Reserve", flag:"54% over projected demand", demandPct:65, plannedPct:100, cap1:"Planned: 1,850 cases", cap2:"Projected demand: 1,200 cases"},
-      {name:"Vidal Blanc", flag:null, demandPct:100, plannedPct:95, cap1:"Planned: 2,280 cases", cap2:"Projected demand: 2,400 cases"},
-      {name:"Norton", flag:"15% over projected demand", demandPct:87, plannedPct:100, cap1:"Planned: 1,260 cases", cap2:"Projected demand: 1,100 cases"},
-      {name:"Traminette", flag:null, demandPct:100, plannedPct:96, cap1:"Planned: 1,440 cases", cap2:"Projected demand: 1,500 cases"},
-    ],
-    margins: [
-      {name:"Chambourcin Reserve", price:"$24.00", raw:"$4.20", labor:"$3.10", overhead:"$2.80", pack:"$1.90", cost:"$12.00", margin:"50%", low:false},
-      {name:"Vidal Blanc", price:"$18.00", raw:"$3.60", labor:"$2.70", overhead:"$2.00", pack:"$1.20", cost:"$9.50", margin:"47%", low:false},
-      {name:"Norton", price:"$22.00", raw:"$6.90", labor:"$4.10", overhead:"$2.60", pack:"$1.20", cost:"$14.80", margin:"33%", low:true},
-      {name:"Traminette", price:"$19.00", raw:"$3.90", labor:"$2.90", overhead:"$2.20", pack:"$1.20", cost:"$10.20", margin:"46%", low:false},
-    ]
-  },
   agriculture: {
     tag: "Sample data · Interactive demo",
     subtitle: "This is a working prototype using representative sample data for a small produce farm, showing how each module surfaces a risk or opportunity before it becomes a loss.",
@@ -308,14 +272,6 @@ function render(industry){
     </tr>`).join('');
 }
 
-document.querySelectorAll('.industry-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.industry-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    render(btn.dataset.industry);
-  });
-});
-
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -325,7 +281,7 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
-render('wine');
+render('agriculture');
 </script>
 </body>
 </html>

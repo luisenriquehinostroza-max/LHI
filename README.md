@@ -1,6 +1,6 @@
 # Vinya
 
-An AI-augmented efficiency platform helping small U.S. agricultural producers catch spoilage risk early, track harvest-to-bottle yield, align production with demand, and see real margins by product line.
+An AI-augmented efficiency platform helping small U.S. agricultural producers catch spoilage risk early, track harvest-to-market yield, align production with demand, and see real margins by product line.
 
 Built by Hinos Investments LLC — [hinosinvestments.com](https://hinosinvestments.com) — Orlando, FL.
 
@@ -8,8 +8,9 @@ Built by Hinos Investments LLC — [hinosinvestments.com](https://hinosinvestmen
 
 This repository hosts the marketing site for Vinya via GitHub Pages.
 
-- `index.html` — main site (wine/vineyard framing)
-- `agriculture.html` — generic version for small agricultural producers
+- `index.html` — main site for small agricultural producers
+- `agriculture.html` — redirects to the main site
+- `data.html` — data each module needs from a producer
 - `demo.html` — interactive demo with sample data
 
 ## Contact
